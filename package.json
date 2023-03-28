@@ -1,0 +1,49 @@
+{
+  "name": "browser-extension-utils",
+  "version": "0.0.1",
+  "description": "Utilities for developing browser extensions and userscripts",
+  "type": "module",
+  "exports": "./lib/index.js",
+  "scripts": {
+    "p": "prettier --write .",
+    "lint": "prettier --write . && xo --fix",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PipecraftNet/browser-extension-utils.git"
+  },
+  "keywords": [
+    "extensions",
+    "userscripts",
+    "utilities"
+  ],
+  "author": "Pipecraft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PipecraftNet/browser-extension-utils/issues"
+  },
+  "homepage": "https://github.com/PipecraftNet/browser-extension-utils#readme",
+  "devDependencies": {
+    "prettier": "^2.8.7",
+    "xo": "^0.53.1"
+  },
+  "files": [
+    "lib/",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "xo": {
+    "space": 2,
+    "prettier": true,
+    "globals": [
+      "document"
+    ],
+    "rules": {
+      "capitalized-comments": 0
+    }
+  }
+}
