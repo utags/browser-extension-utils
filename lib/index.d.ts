@@ -3,29 +3,29 @@ export function uniq(array: any[]): any[]
 export function toCamelCase(text: string): string
 
 export function $(
-  element: HTMLElement | string,
+  element: HTMLElement | Document | string,
   selectors?: string
 ): HTMLElement
 
 export function querySelector(
-  element: HTMLElement | string,
+  element: HTMLElement | Document | string,
   selectors?: string
 ): HTMLElement
 
 export function $$(
-  element: HTMLElement | string,
+  element: HTMLElement | Document | string,
   selectors?: string
 ): HTMLElement[]
 
 export function querySelectorAll(
-  element: HTMLElement | string,
+  element: HTMLElement | Document | string,
   selectors?: string
 ): HTMLElement[]
 
 export function createElement(tagName: string): HTMLElement
 
 export function addEventListener(
-  element: HTMLElement,
+  element: HTMLElement | Document | EventTarget,
   type: string | Record<string, unknown>,
   listener?
 ): void
