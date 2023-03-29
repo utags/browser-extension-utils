@@ -36,9 +36,13 @@ export function setAttribute(
   value: string
 ): void
 
-export function setStyle(element, style: string | Record<string, unknown>): void
+export function setStyle(
+  element: HTMLElement,
+  style: string | Record<string, unknown>,
+  overwrite?: boolean
+): void
 
-export function toStyleMap(styleText: string): Record<string, unknown>
+export function toStyleMap(styleText: string): Record<string, string>
 
 export function noStyleSpace(text: string): string
 
