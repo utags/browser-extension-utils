@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/PipecraftNet/browser-extension-utils#readme",
   "devDependencies": {
+    "esbuild": "^0.17.14",
     "prettier": "^2.8.7",
     "xo": "^0.53.1"
   },
