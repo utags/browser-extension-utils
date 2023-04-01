@@ -4,7 +4,10 @@
   "description": "Utilities for developing browser extensions and userscripts",
   "type": "module",
   "main": "./lib/index.js",
-  "exports": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./userscript": "./lib/userscript.js"
+  },
   "scripts": {
     "p": "prettier --write .",
     "lint": "prettier --write . && xo --fix",
@@ -41,6 +44,8 @@
     "space": 2,
     "prettier": true,
     "globals": [
+      "GM_addElement",
+      "GM_addStyle",
       "document"
     ],
     "rules": {
