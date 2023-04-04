@@ -51,7 +51,8 @@ export function addStyle(styleText: string): HTMLElement
 export function addEventListener(
   element: HTMLElement | Document | EventTarget,
   type: string,
-  listener: Function
+  listener: EventListenerOrEventListenerObject,
+  options?: boolean | AddEventListenerOptions
 ): () => void
 
 export function addEventListener(
@@ -67,6 +68,12 @@ export function setAttribute(
   value: string
 ): void
 
+export type SetStyle = (
+  element: HTMLElement,
+  style: string | Record<string, unknown>,
+  overwrite?: boolean
+) => void
+
 export function setStyle(
   element: HTMLElement,
   style: string | Record<string, unknown>,
@@ -77,6 +84,6 @@ export function toStyleMap(styleText: string): Record<string, string>
 
 export function noStyleSpace(text: string): string
 
-export function createSetStyle(styleText: string): setStyle
+export function createSetStyle(styleText: string): SetStyle
 
 export function isUrl(text: string): boolean
