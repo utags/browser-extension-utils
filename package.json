@@ -46,7 +46,9 @@
     "globals": [
       "GM_addElement",
       "GM_addStyle",
+      "GM_registerMenuCommand",
       "window",
+      "top",
       "document"
     ],
     "rules": {

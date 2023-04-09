@@ -92,3 +92,10 @@ export function noStyleSpace(text: string): string
 export function createSetStyle(styleText: string): SetStyle
 
 export function isUrl(text: string): boolean
+
+export type MenuCallback = (event?: MouseEvent | KeyboardEvent) => void
+export function registerMenuCommand(
+  name: string,
+  callback: MenuCallback,
+  accessKey?: string
+): void
