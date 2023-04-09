@@ -46,6 +46,7 @@
     "globals": [
       "GM_addElement",
       "GM_addStyle",
+      "window",
       "document"
     ],
     "rules": {
