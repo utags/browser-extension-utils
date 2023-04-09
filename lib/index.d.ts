@@ -42,7 +42,7 @@ export function addElement(
 
 export function addElement(
   parentNode: HTMLElement,
-  tagName: string,
+  tagName: string | HTMLElement,
   attributes?: Record<string, unknown>
 ): HTMLElement
 
@@ -66,6 +66,11 @@ export function setAttribute(
   element: HTMLElement,
   name: string,
   value: string
+): void
+
+export function setAttributes(
+  element: HTMLElement,
+  attributes: Record<string, unknown>
 ): void
 
 export type SetStyle = (
