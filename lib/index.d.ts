@@ -53,12 +53,24 @@ export function addEventListener(
   type: string,
   listener: EventListenerOrEventListenerObject,
   options?: boolean | AddEventListenerOptions
-): () => void
+): void
 
 export function addEventListener(
   element: HTMLElement | Document | EventTarget,
   type: string | Record<string, unknown>
-): () => void
+): void
+
+export function removeEventListener(
+  element: HTMLElement | Document | EventTarget,
+  type: string,
+  listener: EventListenerOrEventListenerObject,
+  options?: boolean | AddEventListenerOptions
+): void
+
+export function removeEventListener(
+  element: HTMLElement | Document | EventTarget,
+  type: string | Record<string, unknown>
+): void
 
 export function getAttribute(element: HTMLElement, name: string): string
 
