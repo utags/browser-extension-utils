@@ -47,6 +47,7 @@
       "GM_addElement",
       "GM_addStyle",
       "GM_registerMenuCommand",
+      "history",
       "window",
       "top",
       "document"

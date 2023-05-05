@@ -1,34 +1,28 @@
+export const doc: Document
+
 export function uniq(array: any[]): any[]
 
 export function toCamelCase(text: string): string
 
-export function $(selectors: string): HTMLElement
-
 export function $(
-  element: HTMLElement | Document | string,
-  selectors: string
-): HTMLElement
-
-export function querySelector(selectors: string): HTMLElement
+  selectors: string,
+  element?: HTMLElement | Document
+): Element | undefined
 
 export function querySelector(
-  element: HTMLElement | Document | string,
-  selectors: string
-): HTMLElement
-
-export function $$(selectors: string): HTMLElement[]
+  selectors: string,
+  element?: HTMLElement | Document
+): Element | undefined
 
 export function $$(
-  element: HTMLElement | Document | string,
-  selectors: string
-): HTMLElement[]
-
-export function querySelectorAll(selectors: string): HTMLElement[]
+  selectors: string,
+  element?: HTMLElement | Document
+): Element[]
 
 export function querySelectorAll(
-  element: HTMLElement | Document | string,
-  selectors: string
-): HTMLElement[]
+  selectors: string,
+  element?: HTMLElement | Document
+): Element[]
 
 export function createElement(
   tagName: string,
@@ -85,6 +79,12 @@ export function setAttributes(
   attributes: Record<string, unknown>
 ): void
 
+export function addAttribute(
+  element: HTMLElement,
+  name: string,
+  value: string
+): void
+
 export type SetStyle = (
   element: HTMLElement,
   style: string | Record<string, unknown>,
@@ -105,9 +105,13 @@ export function createSetStyle(styleText: string): SetStyle
 
 export function isUrl(text: string): boolean
 
+export function throttle(func: Function, delay: number): Function
+
 export type MenuCallback = (event?: MouseEvent | KeyboardEvent) => void
 export function registerMenuCommand(
   name: string,
   callback: MenuCallback,
   accessKey?: string
 ): void
+
+export function extendHistoryApi(): void
