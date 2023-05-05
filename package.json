@@ -44,6 +44,7 @@
     "space": 2,
     "prettier": true,
     "globals": [
+      "GM",
       "GM_addElement",
       "GM_addStyle",
       "GM_registerMenuCommand",
