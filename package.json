@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/PipecraftNet/browser-extension-utils#readme",
   "devDependencies": {
-    "prettier": "^2.8.7",
-    "xo": "^0.53.1"
+    "prettier": "^2.8.8",
+    "xo": "^0.54.2"
   },
   "files": [
     "lib/",
