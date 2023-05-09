@@ -105,7 +105,7 @@ export function createSetStyle(styleText: string): SetStyle
 
 export function isUrl(text: string): boolean
 
-export function throttle(func: Function, delay: number): Function
+export function throttle(func: Function, interval: number): Function
 
 export type MenuCallback = (event?: MouseEvent | KeyboardEvent) => void
 export function registerMenuCommand(
