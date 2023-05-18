@@ -7,22 +7,22 @@ export function toCamelCase(text: string): string
 export function $(
   selectors: string,
   element?: HTMLElement | Document
-): Element | undefined
+): HTMLElement | undefined
 
 export function querySelector(
   selectors: string,
   element?: HTMLElement | Document
-): Element | undefined
+): HTMLElement | undefined
 
 export function $$(
   selectors: string,
   element?: HTMLElement | Document
-): Element[]
+): HTMLElement[]
 
 export function querySelectorAll(
   selectors: string,
   element?: HTMLElement | Document
-): Element[]
+): HTMLElement[]
 
 export function createElement(
   tagName: string,
