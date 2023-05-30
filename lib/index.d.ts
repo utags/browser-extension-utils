@@ -85,6 +85,12 @@ export function addAttribute(
   value: string
 ): void
 
+export function addClass(element: HTMLElement, className: string): void
+
+export function removeClass(element: HTMLElement, className: string): void
+
+export function hasClass(element: HTMLElement, className: string): boolean
+
 export type SetStyle = (
   element: HTMLElement,
   style: string | Record<string, unknown>,
