@@ -121,3 +121,13 @@ export function registerMenuCommand(
 ): void
 
 export function extendHistoryApi(): void
+
+export const actionHref: string
+
+export function getOffsetPosition(
+  element: HTMLElement | undefined,
+  referElement?: HTMLElement | undefined
+): {
+  top: number
+  left: number
+}
