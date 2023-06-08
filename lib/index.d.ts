@@ -1,5 +1,7 @@
 export const doc: Document
 
+export const win: Window
+
 export function uniq(array: any[]): any[]
 
 export function toCamelCase(text: string): string
@@ -111,6 +113,7 @@ export function createSetStyle(styleText: string): SetStyle
 
 export function isUrl(text: string): boolean
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function throttle(func: Function, interval: number): Function
 
 export type MenuCallback = (event?: MouseEvent | KeyboardEvent) => void
@@ -131,3 +134,6 @@ export function getOffsetPosition(
   top: number
   left: number
 }
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function runOnce(key: string, func: Function): any
