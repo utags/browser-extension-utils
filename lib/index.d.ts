@@ -137,3 +137,19 @@ export function getOffsetPosition(
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function runOnce(key: string, func: Function): any
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function runWhenBodyExists(func: Function): void
+
+export async function sleep(time: number): Promise<void>
+
+export type Cache = {
+  get: (key: string | any[]) => any
+  add: (key: string | any[], value: any) => void
+}
+
+export const cache: Cache
+
+export function isVisible(element: HTMLElement): boolean
+
+export function parseInt10(number: string, defaultValue?: number): number
