@@ -152,6 +152,8 @@ export const cache: Cache
 
 export function isVisible(element: HTMLElement): boolean
 
+export function isTouchScreen(): boolean
+
 export function parseInt10(
   number: string | undefined,
   defaultValue?: number
