@@ -111,7 +111,7 @@ export function noStyleSpace(text: string): string
 
 export function createSetStyle(styleText: string): SetStyle
 
-export function isUrl(text: string): boolean
+export function isUrl(text: string | undefined): boolean
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function throttle(func: Function, interval: number): Function
@@ -137,6 +137,9 @@ export function getOffsetPosition(
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function runOnce(key: string, func: Function): any
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function runWhenHeadExists(func: Function): void
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function runWhenBodyExists(func: Function): void
