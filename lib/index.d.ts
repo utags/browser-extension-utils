@@ -76,6 +76,8 @@ export function setAttribute(
   value: string
 ): void
 
+export function removeAttribute(element: HTMLElement, name: string): void
+
 export function setAttributes(
   element: HTMLElement,
   attributes: Record<string, unknown>
@@ -161,3 +163,6 @@ export function parseInt10(
   number: string | undefined,
   defaultValue?: number
 ): number
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function createHTML(html: string): string
