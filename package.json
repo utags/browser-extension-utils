@@ -1,6 +1,6 @@
 {
   "name": "browser-extension-utils",
-  "version": "0.1.10",
+  "version": "0.1.13",
   "description": "Utilities for developing browser extensions and userscripts",
   "type": "module",
   "main": "./lib/index.js",
