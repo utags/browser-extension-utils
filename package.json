@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PipecraftNet/browser-extension-utils.git"
+    "url": "git+https://github.com/utags/browser-extension-utils.git"
   },
   "keywords": [
     "extensions",
@@ -25,9 +25,9 @@
   "author": "Pipecraft",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PipecraftNet/browser-extension-utils/issues"
+    "url": "https://github.com/utags/browser-extension-utils/issues"
   },
-  "homepage": "https://github.com/PipecraftNet/browser-extension-utils#readme",
+  "homepage": "https://github.com/utags/browser-extension-utils#readme",
   "devDependencies": {
     "prettier": "^2.8.8",
     "xo": "^0.55.0"
