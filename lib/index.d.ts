@@ -138,7 +138,7 @@ export function getOffsetPosition(
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export function runOnce(key: string, func: Function): any
+export async function runOnce(key: string, func: Function): Promise<any>
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function runWhenHeadExists(func: Function): void
