@@ -146,6 +146,9 @@ export function runWhenHeadExists(func: Function): void
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function runWhenBodyExists(func: Function): void
 
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function runWhenDomReady(func: Function): void
+
 export async function sleep(time: number): Promise<void>
 
 export type Cache = {
