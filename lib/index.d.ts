@@ -68,15 +68,24 @@ export function removeEventListener(
   type: string | Record<string, unknown>
 ): void
 
-export function getAttribute(element: HTMLElement, name: string): string
+export function getAttribute(
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  element: HTMLElement | null | undefined,
+  name: string
+): string | undefined
 
 export function setAttribute(
-  element: HTMLElement,
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  element: HTMLElement | null | undefined,
   name: string,
   value: string
 ): void
 
-export function removeAttribute(element: HTMLElement, name: string): void
+export function removeAttribute(
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  element: HTMLElement | null | undefined,
+  name: string
+): void
 
 export function setAttributes(
   element: HTMLElement,
@@ -89,20 +98,34 @@ export function addAttribute(
   value: string
 ): void
 
-export function addClass(element: HTMLElement, className: string): void
+export function addClass(
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  element: HTMLElement | null | undefined,
+  className: string
+): void
 
-export function removeClass(element: HTMLElement, className: string): void
+export function removeClass(
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  element: HTMLElement | null | undefined,
+  className: string
+): void
 
-export function hasClass(element: HTMLElement, className: string): boolean
+export function hasClass(
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  element: HTMLElement | null | undefined,
+  className: string
+): boolean
 
 export type SetStyle = (
-  element: HTMLElement,
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  element: HTMLElement | null | undefined,
   style: string | Record<string, unknown>,
   overwrite?: boolean
 ) => void
 
 export function setStyle(
-  element: HTMLElement,
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  element: HTMLElement | null | undefined,
   style: string | Record<string, unknown>,
   overwrite?: boolean
 ): void

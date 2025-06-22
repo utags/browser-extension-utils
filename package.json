@@ -38,7 +38,7 @@
     "README.md"
   ],
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    "node": ">=16.9.0"
   },
   "xo": {
     "space": 2,
@@ -56,7 +56,9 @@
       "document"
     ],
     "rules": {
+      "logical-assignment-operators": 0,
       "prefer-destructuring": 0,
+      "unicorn/prevent-abbreviations": 0,
       "capitalized-comments": 0
     }
   }
