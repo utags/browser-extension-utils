@@ -142,11 +142,19 @@ export function isUrl(text: string | undefined): boolean
 export function throttle(func: Function, interval: number): Function
 
 export type MenuCallback = (event?: MouseEvent | KeyboardEvent) => void
+export type RegisterMenuCommandOptions = {
+  id?: string | number
+  title?: string
+  autoClose?: boolean
+  // O - Tampermonkey
+  // X - Violentmonkey
+  accessKey?: string
+}
 export function registerMenuCommand(
   name: string,
   callback: MenuCallback,
-  accessKey?: string
-): void
+  options?: RegisterMenuCommandOptions
+): Promise<string | number | undefined>
 
 export function extendHistoryApi(): void
 
@@ -195,3 +203,5 @@ export function parseInt10(
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function createHTML(html: string): string
+
+export function compareVersions(v1: string, v2: string): number
