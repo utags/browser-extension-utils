@@ -69,20 +69,17 @@ export function removeEventListener(
 ): void
 
 export function getAttribute(
-  // eslint-disable-next-line @typescript-eslint/ban-types
   element: HTMLElement | null | undefined,
   name: string
 ): string | undefined
 
 export function setAttribute(
-  // eslint-disable-next-line @typescript-eslint/ban-types
   element: HTMLElement | null | undefined,
   name: string,
   value: string
 ): void
 
 export function removeAttribute(
-  // eslint-disable-next-line @typescript-eslint/ban-types
   element: HTMLElement | null | undefined,
   name: string
 ): void
@@ -99,32 +96,27 @@ export function addAttribute(
 ): void
 
 export function addClass(
-  // eslint-disable-next-line @typescript-eslint/ban-types
   element: HTMLElement | null | undefined,
   className: string
 ): void
 
 export function removeClass(
-  // eslint-disable-next-line @typescript-eslint/ban-types
   element: HTMLElement | null | undefined,
   className: string
 ): void
 
 export function hasClass(
-  // eslint-disable-next-line @typescript-eslint/ban-types
   element: HTMLElement | null | undefined,
   className: string
 ): boolean
 
 export type SetStyle = (
-  // eslint-disable-next-line @typescript-eslint/ban-types
   element: HTMLElement | null | undefined,
   style: string | Record<string, unknown>,
   overwrite?: boolean
 ) => void
 
 export function setStyle(
-  // eslint-disable-next-line @typescript-eslint/ban-types
   element: HTMLElement | null | undefined,
   style: string | Record<string, unknown>,
   overwrite?: boolean
@@ -138,7 +130,6 @@ export function createSetStyle(styleText: string): SetStyle
 
 export function isUrl(text: string | undefined): boolean
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function throttle(func: Function, interval: number): Function
 
 export type MenuCallback = (event?: MouseEvent | KeyboardEvent) => void
@@ -162,25 +153,20 @@ export const actionHref: string
 
 export function getOffsetPosition(
   element: HTMLElement | undefined,
-  referElement?: HTMLElement | undefined
+  referElement?: HTMLElement
 ): {
   top: number
   left: number
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export async function runOnce(key: string, func: Function): Promise<any>
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function runWhenRootExists(func: Function): void
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function runWhenHeadExists(func: Function): void
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function runWhenBodyExists(func: Function): void
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function runWhenDomReady(func: Function): void
 
 export async function sleep(time: number): Promise<void>
@@ -201,7 +187,6 @@ export function parseInt10(
   defaultValue?: number
 ): number
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function createHTML(html: string): string
 
 export function compareVersions(v1: string, v2: string): number

@@ -10,7 +10,9 @@
   },
   "scripts": {
     "p": "prettier --write .",
-    "lint": "prettier --write . && xo --fix",
+    "xo": "xo",
+    "lint": "prettier --write . && xo --fix && tsc --noemit",
+    "lint:type": "tsc --noemit",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
