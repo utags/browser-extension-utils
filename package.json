@@ -1,19 +1,22 @@
 {
   "name": "browser-extension-utils",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Utilities for developing browser extensions and userscripts",
   "type": "module",
-  "main": "./lib/index.js",
+  "main": "./lib/index.ts",
   "exports": {
-    ".": "./lib/index.js",
-    "./userscript": "./lib/userscript.js"
+    ".": "./lib/index.ts",
+    "./userscript": "./lib/userscript.ts"
   },
   "scripts": {
     "p": "prettier --write .",
     "xo": "xo",
     "lint": "prettier --write . && xo --fix && tsc --noemit",
     "lint:type": "tsc --noemit",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:ui": "vitest --ui --coverage.enabled=true",
+    "test:coverage": "vitest --coverage"
   },
   "repository": {
     "type": "git",

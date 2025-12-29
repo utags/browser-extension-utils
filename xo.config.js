@@ -63,6 +63,7 @@ const xoConfig = [
       '@typescript-eslint/prefer-nullish-coalescing': 0,
       '@typescript-eslint/prefer-optional-chain': 0,
       '@typescript-eslint/no-restricted-types': 0,
+      '@typescript-eslint/consistent-type-definitions': 0,
       'logical-assignment-operators': 0,
       'unicorn/prevent-abbreviations': 0,
       'unicorn/prefer-spread': 0,
