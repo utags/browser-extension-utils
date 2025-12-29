@@ -29,8 +29,14 @@
   },
   "homepage": "https://github.com/utags/browser-extension-utils#readme",
   "devDependencies": {
-    "prettier": "^3.5.3",
-    "xo": "^0.60.0"
+    "@types/chrome": "^0.1.32",
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
+    "happy-dom": "^20.0.11",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16",
+    "xo": "^1.2.3"
   },
   "files": [
     "lib/",
@@ -38,9 +44,9 @@
     "README.md"
   ],
   "engines": {
-    "node": ">=16.9.0"
+    "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
   },
-  "xo": {
+  "xoxx": {
     "space": 2,
     "prettier": true,
     "globals": [
