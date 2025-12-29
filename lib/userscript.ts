@@ -6,26 +6,6 @@ import {
 
 export * from './index.js'
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const GM_addElement:
-    | ((
-        parentNode: HTMLElement | null | undefined,
-        tagName: string,
-        attributes?: any
-      ) => HTMLElement)
-    | undefined
-
-  const GM: {
-    registerMenuCommand: (name: string, callback: any, options?: any) => any
-  }
-  const process: any
-
-  interface Document {
-    GMFunctions?: Record<string, any>
-  }
-}
-
 export const addElement =
   typeof GM_addElement === 'function'
     ? (
@@ -52,38 +32,37 @@ export const addElement =
         }
 
         if (typeof tagName === 'string') {
+          let attributes1: Record<string, string> | undefined
           let attributes2: Record<string, unknown> | undefined
-          const eventListeners: Array<[string, any]> = []
-
           if (attributes) {
-            // eslint-disable-next-line n/prefer-global/process, @typescript-eslint/no-unused-expressions
-            process.env.NODE_ENV
-
             const entries1: Array<[string, unknown]> = []
-            for (const [key, value] of Object.entries(attributes)) {
-              if (key.startsWith('on')) {
-                const eventName = key.slice(2).toLowerCase()
-                eventListeners.push([eventName, value])
+            const entries2: Array<[string, unknown]> = []
+            for (const entry of Object.entries(attributes)) {
+              // Some userscript managers do not support innerHTML
+              // Stay do not support multiple classes: GM_addElement('div', {"class": "a b"}). Remove `|class` when it is supported
+              if (/^(on\w+|innerHTML|class)$/.test(entry[0])) {
+                entries2.push(entry)
               } else {
-                entries1.push([key, value])
+                entries1.push(entry)
               }
             }
 
-            attributes = Object.fromEntries(entries1) as Record<string, unknown>
+            attributes1 = Object.fromEntries(entries1) as Record<string, string>
+            attributes2 = Object.fromEntries(entries2) as Record<
+              string,
+              unknown
+            >
           }
 
-          const element = GM_addElement(null, tagName, attributes)
-
-          for (const [eventName, listener] of eventListeners) {
-            element.addEventListener(
-              eventName,
-              listener as EventListenerOrEventListenerObject
-            )
+          try {
+            const element = GM_addElement(tagName, attributes1)
+            setAttributes(element, attributes2)
+            parentNode.append(element)
+            return element
+          } catch (error) {
+            console.error('GM_addElement error:', error)
+            return _addElement(parentNode, tagName, attributes)
           }
-
-          setAttributes(element, attributes2)
-          parentNode.append(element)
-          return element
         }
 
         // tagName: HTMLElement
@@ -100,7 +79,7 @@ export const addStyle = (styleText: string): HTMLElement | undefined =>
 export const registerMenuCommand = (
   name: string,
   callback: (event?: any) => void,
-  options?: any
+  options?: Parameters<typeof GM_registerMenuCommand>[2]
 ): any => {
   if (globalThis.self !== globalThis.top) {
     return

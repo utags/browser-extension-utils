@@ -1,6 +1,6 @@
 {
   "name": "browser-extension-utils",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Utilities for developing browser extensions and userscripts",
   "type": "module",
   "main": "./lib/index.ts",
@@ -50,27 +50,5 @@
   ],
   "engines": {
     "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
-  },
-  "xoxx": {
-    "space": 2,
-    "prettier": true,
-    "globals": [
-      "GM",
-      "GM_addElement",
-      "GM_addStyle",
-      "GM_registerMenuCommand",
-      "trustedTypes",
-      "MutationObserver",
-      "history",
-      "window",
-      "top",
-      "document"
-    ],
-    "rules": {
-      "logical-assignment-operators": 0,
-      "prefer-destructuring": 0,
-      "unicorn/prevent-abbreviations": 0,
-      "capitalized-comments": 0
-    }
   }
 }

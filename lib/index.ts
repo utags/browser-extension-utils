@@ -1,340 +1,52 @@
-export const doc = document
+import {
+  doc,
+  win,
+  addEventListener,
+  removeEventListener,
+  getRootElement,
+} from './dom-utils'
+import { setAttributes } from './set-attributes'
+import { createElement } from './create-element'
+import { addElement } from './add-element'
 
-export const win = globalThis
+export * from './dom-utils'
+export * from './set-attributes'
+export * from './create-element'
+export * from './add-element'
 
 export const uniq = <T>(array: T[]): T[] => [...new Set(array)]
 
-// Polyfill for String.prototype.replaceAll()
-
-if (typeof String.prototype.replaceAll !== 'function') {
-  // eslint-disable-next-line no-extend-native
-  String.prototype.replaceAll = String.prototype.replace
-}
-
-export const toCamelCase = function (text: string): string {
-  return text.replaceAll(
-    /^([A-Z])|[\s-_](\w)/g,
-    (_match: string, p1: string, p2: string) => {
-      if (p2) return p2.toUpperCase()
-      return p1.toLowerCase()
-    }
-  )
-}
-
 export const $ = (
-  selectors: string,
-  element?: HTMLElement | Document
-): HTMLElement | undefined =>
-  (element || doc).querySelector<HTMLElement>(selectors) || undefined
+  selector: string,
+  context: Element | Document = doc
+): HTMLElement | null => context.querySelector(selector)!
+
 export const $$ = (
-  selectors: string,
-  element?: HTMLElement | Document
-): HTMLElement[] => [
-  ...(element || doc).querySelectorAll<HTMLElement>(selectors),
-]
-export const querySelector = $
-export const querySelectorAll = $$
+  selector: string,
+  context: Element | Document = doc
+): HTMLElement[] =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  [...context.querySelectorAll(selector)] as HTMLElement[]
 
-export const getRootElement = (type?: number): HTMLElement =>
-  type === 1
-    ? doc.head || doc.body || doc.documentElement
-    : type === 2
-      ? doc.body || doc.documentElement
-      : doc.documentElement
-
-export const createElement = (
-  tagName: string,
+export const addStyle = (
+  style: string,
   attributes?: Record<string, unknown>
-): HTMLElement =>
-  setAttributes(
-    doc.createElement(tagName),
-    attributes
-  ) as unknown as HTMLElement
-
-export const addElement = (
-  parentNode: HTMLElement | string | null | undefined,
-  tagName: string | HTMLElement,
-  attributes?: Record<string, unknown>
-): HTMLElement | undefined => {
-  if (typeof parentNode === 'string') {
-    return addElement(
-      null,
-      parentNode,
-      tagName as unknown as Record<string, unknown>
-    )
-  }
-
-  if (!tagName) {
-    return undefined
-  }
-
-  if (!parentNode) {
-    parentNode = /^(script|link|style|meta)$/.test(tagName as string)
-      ? getRootElement(1)
-      : getRootElement(2)
-  }
-
-  if (typeof tagName === 'string') {
-    const element = createElement(tagName, attributes)
-    parentNode.append(element)
-    return element
-  }
-
-  // tagName: HTMLElement
-  setAttributes(tagName, attributes)
-  parentNode.append(tagName)
-  return tagName
-}
-
-export const addStyle = (styleText: string): HTMLElement => {
-  const element = createElement('style', { textContent: styleText })
+): HTMLStyleElement => {
+  const element = createElement('style', {
+    textContent: style,
+    ...attributes,
+  }) as HTMLStyleElement
   getRootElement(1).append(element)
   return element
 }
 
-export const addEventListener = (
-  element: HTMLElement | Document | EventTarget | null | undefined,
-  type: string | Record<string, any>,
-  listener?: EventListenerOrEventListenerObject,
-  options?: boolean | AddEventListenerOptions
-): void => {
-  if (!element) {
-    return
-  }
-
-  if (typeof type === 'object') {
-    for (const type1 in type) {
-      if (Object.hasOwn(type, type1)) {
-        element.addEventListener(
-          type1,
-          (type as any)[type1] as EventListenerOrEventListenerObject
-        )
-      }
-    }
-  } else if (typeof type === 'string' && typeof listener === 'function') {
-    element.addEventListener(type, listener, options)
-  }
-}
-
-export const removeEventListener = (
-  element: HTMLElement | Document | EventTarget | null | undefined,
-  type: string | Record<string, any>,
-  listener?: EventListenerOrEventListenerObject,
-  options?: boolean | AddEventListenerOptions
-): void => {
-  if (!element) {
-    return
-  }
-
-  if (typeof type === 'object') {
-    for (const type1 in type) {
-      if (Object.hasOwn(type, type1)) {
-        element.removeEventListener(
-          type1,
-          (type as any)[type1] as EventListenerOrEventListenerObject
-        )
-      }
-    }
-  } else if (typeof type === 'string' && typeof listener === 'function') {
-    element.removeEventListener(type, listener, options)
-  }
-}
-
-export const getAttribute = (
-  element: HTMLElement | null | undefined,
-  name: string
-): string | undefined =>
-  element && element.getAttribute
-    ? element.getAttribute(name) || undefined
-    : undefined
-
-export const setAttribute = (
-  element: HTMLElement | null | undefined,
-  name: string,
-  value: string
-): void => {
-  if (element && element.setAttribute) {
-    element.setAttribute(name, value)
-  }
-}
-
-export const removeAttribute = (
-  element: HTMLElement | null | undefined,
-  name: string
-): void => {
-  if (element && element.removeAttribute) {
-    element.removeAttribute(name)
-  }
-}
-
-export const addClass = (
-  element: HTMLElement | null | undefined,
-  className: string
-): void => {
-  if (!element || !element.classList) {
-    return
-  }
-
-  element.classList.add(className)
-}
-
-export const removeClass = (
-  element: HTMLElement | null | undefined,
-  className: string
-): void => {
-  if (!element || !element.classList) {
-    return
-  }
-
-  element.classList.remove(className)
-}
-
-export const hasClass = (
-  element: HTMLElement | null | undefined,
-  className: string
-): boolean => {
-  if (!element || !element.classList) {
-    return false
-  }
-
-  return element.classList.contains(className)
-}
-
-export type SetStyle = (
-  element: HTMLElement | null | undefined,
-  style: string | Record<string, unknown>,
-  overwrite?: boolean
-) => void
-
-export const setStyle = (
-  element: HTMLElement | null | undefined,
-  values: string | Record<string, any>,
-  overwrite?: boolean
-): void => {
-  if (!element) {
-    return
-  }
-
-  // element.setAttribute("style", value) -> Fail when violates CSP
-  const style = element.style
-
-  if (typeof values === 'string') {
-    style.cssText = overwrite ? values : style.cssText + ';' + values
-    return
-  }
-
-  if (overwrite) {
-    style.cssText = ''
-  }
-
-  for (const key in values) {
-    if (Object.hasOwn(values, key)) {
-      ;(style as any)[key] = String(values[key]).replace('!important', '')
-    }
-  }
-}
-
-// convert `font-size: 12px; color: red` to `{"fontSize": "12px"; "color": "red"}`
-
-const toStyleKeyValues = (styleText: string): Record<string, string> => {
-  const result: Record<string, string> = {}
-  const keyValues = styleText.split(/\s*;\s*/)
-  for (const keyValue of keyValues) {
-    const kv = keyValue.split(/\s*:\s*/)
-    // TODO: fix when key is such as -webkit-xxx
-    const key = toCamelCase(kv[0])
-    if (key) {
-      result[key] = kv[1]
-    }
-  }
-
-  return result
-}
-
-export const toStyleMap = (styleText: string): Record<string, string> => {
-  styleText = noStyleSpace(styleText)
-  const map: Record<string, string> = {}
-  const keyValues = styleText.split('}')
-  for (const keyValue of keyValues) {
-    const kv = keyValue.split('{')
-    if (kv[0] && kv[1]) {
-      map[kv[0]] = kv[1]
-    }
-  }
-
-  return map
-}
-
-export const noStyleSpace = (text: string): string =>
-  text.replaceAll(/\s*([^\w-+%!])\s*/gm, '$1')
-
-export const createSetStyle = (styleText: string): SetStyle => {
-  const styleMap = toStyleMap(styleText)
-  return (element, value, overwrite) => {
-    if (typeof value === 'object') {
-      setStyle(element, value, overwrite)
-    } else if (typeof value === 'string') {
-      const key = noStyleSpace(value)
-      const value2 = styleMap[key]
-      setStyle(element, value2 || value, overwrite)
-    }
-  }
-}
-
-export const isUrl = (text: string | undefined): boolean =>
-  /^https?:\/\//.test(text || '')
-
-/**
- *
- * @param { function } func
- * @param { number } interval
- * @returns
- */
-export const throttle = (
-  func: (...args: any[]) => any,
-  interval: number
-): ((...args: any[]) => any) => {
-  let timeoutId: any = null
-  let next = false
-  const handler = (...args: any[]) => {
-    if (timeoutId) {
-      next = true
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      func(...args)
-      timeoutId = setTimeout(() => {
-        timeoutId = null
-        if (next) {
-          next = false
-          handler()
-        }
-      }, interval)
-    }
-  }
-
-  return handler
-}
-
-// Polyfill for Object.hasOwn()
-if (typeof Object.hasOwn !== 'function') {
-  Object.hasOwn = (instance, prop) =>
-    Object.prototype.hasOwnProperty.call(instance, prop)
-}
-
 export type MenuCallback = (event?: MouseEvent | KeyboardEvent) => void
-export type RegisterMenuCommandOptions = {
-  id?: string | number
-  title?: string
-  autoClose?: boolean
-  // O - Tampermonkey
-  // X - Violentmonkey
-  accessKey?: string
-}
 
 export const registerMenuCommand = (
   _name?: string,
   _callback?: MenuCallback,
-  _options?: RegisterMenuCommandOptions
+  _options?: Parameters<typeof GM_registerMenuCommand>[2]
 ): Promise<string | number | undefined> | undefined => undefined
 
 export const extendHistoryApi = (): void => {
@@ -569,20 +281,40 @@ export const isVisible = (element: HTMLElement): boolean => {
 
 export const isTouchScreen = (): boolean => 'ontouchstart' in win
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const tt = (globalThis as any).trustedTypes
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const escapeHTMLPolicy =
-  tt !== undefined && typeof tt.createPolicy === 'function'
-    ? // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      tt.createPolicy('beuEscapePolicy', {
-        createHTML: (string: string) => string,
-      })
-    : undefined
+export const isUrl = (text: string): boolean => /^https?:\/\//.test(text)
 
-export const createHTML = (html: string): string =>
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  escapeHTMLPolicy ? (escapeHTMLPolicy.createHTML(html) as string) : html
+/**
+ *
+ * @param { function } func
+ * @param { number } interval
+ * @returns
+ */
+export const throttle = (
+  func: (...args: any[]) => any,
+  interval: number
+): ((...args: any[]) => void) => {
+  let timeoutId: any = null
+  let next = false
+  const handler = (...args: any[]) => {
+    if (timeoutId) {
+      next = true
+    } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+
+      func.apply(this, args)
+      timeoutId = setTimeout(() => {
+        timeoutId = null
+        if (next) {
+          next = false
+          handler()
+        }
+      }, interval)
+    }
+  }
+
+  return handler
+}
 
 /**
  * Compare two semantic version strings
@@ -623,40 +355,4 @@ export function compareVersions(v1: string, v2: string): number {
   }
 
   return 0 // Versions are equal
-}
-
-export const setAttributes = (
-  element: HTMLElement | null | undefined,
-  attributes?: Record<string, unknown>
-): HTMLElement | null | undefined => {
-  if (element && attributes) {
-    for (const name in attributes) {
-      if (Object.hasOwn(attributes, name)) {
-        const value = attributes[name]
-        if (value === undefined) {
-          continue
-        }
-
-        if (/^(value|textContent|innerText)$/.test(name)) {
-          ;(element as any)[name] = value
-        } else if (/^(innerHTML)$/.test(name)) {
-          element.innerHTML = createHTML(value as string)
-        } else if (name === 'style') {
-          setStyle(element, value as string | Record<string, any>, true)
-        } else if (/on\w+/.test(name)) {
-          const type = name.slice(2)
-          addEventListener(
-            element,
-            type,
-            value as EventListenerOrEventListenerObject
-          )
-        } else {
-          // eslint-disable-next-line @typescript-eslint/no-base-to-string
-          setAttribute(element, name, String(value))
-        }
-      }
-    }
-  }
-
-  return element
 }

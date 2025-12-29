@@ -70,9 +70,6 @@ const xoConfig = [
       'prefer-object-spread': 0,
       'prefer-object-has-own': 0,
       'no-await-in-loop': 0,
-      // '@typescript-eslint/no-unsafe-assignment': 0,
-      // '@typescript-eslint/no-unsafe-return': 0,
-      // '@typescript-eslint/no-unsafe-argument': 0,
     },
   },
   {
