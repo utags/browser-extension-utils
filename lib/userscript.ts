@@ -76,19 +76,34 @@ export const addStyle = (styleText: string): HTMLElement | undefined =>
   addElement(null, 'style', { textContent: styleText })
 
 // Only register menu on top frame
-export const registerMenuCommand = (
+export const registerMenuCommand = async (
   name: string,
   callback: (event?: any) => void,
   options?: Parameters<typeof GM_registerMenuCommand>[2]
-): any => {
+): Promise<number> => {
   if (globalThis.self !== globalThis.top) {
-    return
+    return 0
   }
 
   if (typeof GM.registerMenuCommand !== 'function') {
     console.warn('Do not support GM.registerMenuCommand!')
-    return
+    return 0
   }
 
-  return GM.registerMenuCommand(name, callback, options)
+  try {
+    return await GM.registerMenuCommand(name, callback, options)
+  } catch (error) {
+    if (typeof options === 'object') {
+      // Don't support object options
+      try {
+        return await GM.registerMenuCommand(name, callback, options.accessKey)
+      } catch (error_) {
+        console.error('GM.registerMenuCommand error:', error_)
+      }
+    } else {
+      console.error('GM.registerMenuCommand error:', error)
+    }
+
+    return 0
+  }
 }
