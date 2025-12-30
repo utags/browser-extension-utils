@@ -3,6 +3,8 @@ declare module 'css:*' {
   export default cssText
 }
 
+declare const browser: typeof chrome
+
 // eslint-disable-next-line @typescript-eslint/naming-convention
 declare const GM_info: {
   scriptHandler: string
@@ -12,6 +14,10 @@ declare function GM_addValueChangeListener(
   key: string,
   cb: (key: string, oldValue: any, newValue: any, remote: boolean) => void
 ): number
+
+declare type RegisterMenuCommandOptions = Parameters<
+  typeof GM_registerMenuCommand
+>[2]
 
 declare function GM_registerMenuCommand(
   caption: string,

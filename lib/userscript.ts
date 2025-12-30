@@ -55,7 +55,7 @@ export const addElement =
           }
 
           try {
-            const element = GM_addElement(tagName, attributes1)
+            const element = GM_addElement(tagName, attributes1 || {})
             setAttributes(element, attributes2)
             parentNode.append(element)
             return element

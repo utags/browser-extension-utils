@@ -13,6 +13,9 @@ export * from './dom-utils'
 export * from './set-attributes'
 export * from './create-element'
 export * from './add-element'
+export type RegisterMenuCommandOptions = Parameters<
+  typeof GM_registerMenuCommand
+>[2]
 
 export const uniq = <T>(array: T[]): T[] => [...new Set(array)]
 
