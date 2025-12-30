@@ -40,7 +40,8 @@ export const addElement =
             for (const entry of Object.entries(attributes)) {
               // Some userscript managers do not support innerHTML
               // Stay do not support multiple classes: GM_addElement('div', {"class": "a b"}). Remove `|class` when it is supported
-              if (/^(on\w+|innerHTML|class)$/.test(entry[0])) {
+              // Stay do not support data-* attributes
+              if (/^(on\w+|innerHTML|class|data-.+)$/.test(entry[0])) {
                 entries2.push(entry)
               } else {
                 entries1.push(entry)
