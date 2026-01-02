@@ -22,7 +22,9 @@ export const uniq = <T>(array: T[]): T[] => [...new Set(array)]
 export const $ = (
   selector: string,
   context: Element | Document = doc
-): HTMLElement | null => context.querySelector(selector)!
+): HTMLElement | undefined =>
+  (context ? context.querySelector<HTMLElement>(selector) : undefined) ||
+  undefined
 
 export const $$ = (
   selector: string,
@@ -30,7 +32,7 @@ export const $$ = (
 ): HTMLElement[] =>
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  [...context.querySelectorAll(selector)] as HTMLElement[]
+  [...(context ? context.querySelectorAll(selector) : [])] as HTMLElement[]
 
 export const addStyle = (
   style: string,
