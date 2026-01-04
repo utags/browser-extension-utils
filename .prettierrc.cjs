@@ -10,5 +10,19 @@ module.exports = {
   trailingComma: 'es5',
   bracketSpacing: true,
   bracketSameLine: true,
-  overrides: [{ files: '*.json', options: { parser: 'json-stringify' } }],
+  overrides: [
+    {
+      files: ['*.css', '*.scss', '*.yml', 'build/**/*'],
+      options: {
+        singleQuote: false,
+      },
+    },
+    {
+      files: 'src/messages/*.ts',
+      options: {
+        printWidth: 9999,
+      },
+    },
+    { files: '*.json', options: { parser: 'json-stringify' } },
+  ],
 }
