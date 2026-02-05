@@ -77,7 +77,7 @@ export const getAttribute = (
   name: string
 ): string | undefined =>
   element && element.getAttribute
-    ? element.getAttribute(name) || undefined
+    ? (element.getAttribute(name) ?? undefined)
     : undefined
 
 export const setAttributeForce = (

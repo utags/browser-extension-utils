@@ -67,6 +67,7 @@ const xoConfig = [
       'logical-assignment-operators': 0,
       'unicorn/prevent-abbreviations': 0,
       'unicorn/prefer-spread': 0,
+      'unicorn/prefer-dom-node-dataset': 0,
       'prefer-object-spread': 0,
       'prefer-object-has-own': 0,
       'no-await-in-loop': 0,
