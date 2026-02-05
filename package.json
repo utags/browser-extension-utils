@@ -1,12 +1,13 @@
 {
   "name": "browser-extension-utils",
-  "version": "0.3.6",
+  "version": "0.5.0",
   "description": "Utilities for developing browser extensions and userscripts",
   "type": "module",
   "main": "./lib/index.ts",
   "exports": {
     ".": "./lib/index.ts",
-    "./userscript": "./lib/userscript.ts"
+    "./userscript": "./lib/userscript.ts",
+    "./request-idle-callback-polyfill": "./lib/request-idle-callback-polyfill.ts"
   },
   "scripts": {
     "p": "prettier --write .",
