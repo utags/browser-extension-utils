@@ -80,13 +80,27 @@ export const getAttribute = (
     ? element.getAttribute(name) || undefined
     : undefined
 
-export const setAttribute = (
+export const setAttributeForce = (
   element: HTMLElement | null | undefined,
   name: string,
   value: string
 ): void => {
   if (element && element.setAttribute) {
     element.setAttribute(name, value)
+  }
+}
+
+export const setAttribute = (
+  element: HTMLElement | null | undefined,
+  name: string,
+  value: string
+): void => {
+  if (element && element.setAttribute) {
+    const orgValue = getAttribute(element, name)
+    // Set value when it's different from the original value to avoid unnecessary DOM mutation
+    if (orgValue !== value) {
+      element.setAttribute(name, value)
+    }
   }
 }
 
