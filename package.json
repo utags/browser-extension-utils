@@ -45,13 +45,13 @@
   },
   "homepage": "https://github.com/utags/browser-extension-utils#readme",
   "devDependencies": {
-    "@types/chrome": "^0.1.36",
-    "@vitest/coverage-v8": "^4.0.18",
-    "@vitest/ui": "^4.0.18",
-    "happy-dom": "^20.5.0",
+    "@types/chrome": "^0.1.38",
+    "@vitest/coverage-v8": "^4.1.0",
+    "@vitest/ui": "^4.1.0",
+    "happy-dom": "^20.8.4",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.18",
+    "vitest": "^4.1.0",
     "xo": "^1.2.3"
   },
   "files": [
