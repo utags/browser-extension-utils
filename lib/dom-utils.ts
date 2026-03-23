@@ -228,8 +228,9 @@ const tt = (globalThis as any).trustedTypes
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const escapeHTMLPolicy =
   tt !== undefined && typeof tt.createPolicy === 'function'
-    ? // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      tt.createPolicy('beuEscapePolicy', {
+    ? // Change to 'dompurify' - https://greasyfork.org/zh-CN/scripts/464541-links-helper/discussions/322299
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      tt.createPolicy('dompurify', {
         createHTML: (string: string) => string,
       })
     : undefined
